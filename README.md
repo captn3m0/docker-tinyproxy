@@ -1,9 +1,10 @@
-# Docker Tinyproxy ![alt text](https://raw.githubusercontent.com/daniel-middleton/docker-tinyproxy/master/other/banu_logo.png "Banu!")
-A quick and easy Dockerised Tinyproxy with configurable ACL.
+# Docker Tinyproxy
 
-Find it on [GitHub](https://github.com/daniel-middleton/docker-tinyproxy).
+A quick and easy Dockerised Tinyproxy.
 
-Find it on [DockerHub](https://registry.hub.docker.com/u/dannydirect/tinyproxy/).
+Find it on [GitHub](https://github.com/captn3m0/docker-tinyproxy).
+
+Find it on [DockerHub](https://registry.hub.docker.com/u/capt3m0/tinyproxy/).
 
 ### Usage
 ---
@@ -11,15 +12,13 @@ Find it on [DockerHub](https://registry.hub.docker.com/u/dannydirect/tinyproxy/)
 
 ```
 Usage:
-    docker run -d --name='tinyproxy' -p <Host_Port>:8888 dannydirect/tinyproxy:latest <ACL>
+    docker run -d --name='tinyproxy' -p <Host_Port>:8888 captn3m0/tinyproxy:latest
+```
 
-        - Set <Host_Port> to the port you wish the proxy to be accessible from.
-        - Set <ACL> to 'ANY' to allow unrestricted proxy access, or one or more space seperated IP/CIDR addresses for tighter security.
+Runs in the default configuration by itself. If you wish to pass a custom configuration, use the `--volume` option to mount it to `/etc/tinyproxy/tinyproxy.conf`:
 
-    Examples:
-        docker run -d --name='tinyproxy' -p 6666:8888 dannydirect/tinyproxy:latest ANY
-        docker run -d --name='tinyproxy' -p 7777:8888 dannydirect/tinyproxy:latest 87.115.60.124
-        docker run -d --name='tinyproxy' -p 8888:8888 dannydirect/tinyproxy:latest 10.103.0.100/24 192.168.1.22/16
+```
+docker run -d --name='tinyproxy' -p <Host_Port>:8888 --volume tinyproxy.conf:/etc/tinyproxy/tinyproxy.conf captn3m0/tinyproxy:latest
 ```
 
 ### Monitoring
