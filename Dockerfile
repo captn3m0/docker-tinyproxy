@@ -7,12 +7,10 @@
 
 FROM alpine:3.7
 
-MAINTAINER Daniel Middleton <monokal.io>
+MAINTAINER Nemo <dockerfile@captnemo.in>
 
-RUN apk add --no-cache \
-	bash \
-	tinyproxy
+RUN apk add --no-cache tinyproxy dumb-init
 
-COPY run.sh /opt/docker-tinyproxy/run.sh
+COPY init /init
 
-ENTRYPOINT ["/opt/docker-tinyproxy/run.sh"]
+ENTRYPOINT ["/init"]

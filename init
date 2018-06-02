@@ -1,0 +1,49 @@
+#!/bin/dumb-init /bin/sh
+
+screenOut() {
+    timestamp=$(date +"%H:%M:%S")
+    
+    if [ "$#" -ne 2 ]; then
+        status='INFO'
+        message="$1"
+    else
+        status="$1"
+        message="$2"
+    fi
+
+    echo -e "[$status][$timestamp]: $message"
+}
+
+# Usage: checkStatus $? "Error message" "Success message"
+checkStatus() {
+    case $1 in
+        0)
+            screenOut "SUCCESS" "$3"
+            ;;
+        1)
+            screenOut "ERROR" "$2 - Exiting..."
+            exit 1
+            ;;
+        *)
+            screenOut "ERROR" "Unrecognised return code."
+            ;;
+    esac
+}
+
+startService() {
+    screenOut "Starting Tinyproxy service..."
+    /usr/sbin/tinyproxy
+    checkStatus $? "Could not start Tinyproxy service." \
+                   "Tinyproxy service started successfully."
+}
+
+tailLog() {
+    screenOut "Tailing Tinyproxy log..."
+    tail -f $TAIL_LOG
+    checkStatus $? "Could not tail $TAIL_LOG" \
+                   "Stopped tailing $TAIL_LOG"
+}
+
+startService
+
+tailLog
