@@ -5,4 +5,5 @@ echo "`date` Starting `tinyproxy -v` service..."
 tinyproxy
 
 echo "`date` Tailing Tinyproxy log..."
-while ! tail -f $TAIL_LOG ; do sleep 1 ; done
+touch $TAIL_LOG
+tail -f $TAIL_LOG
