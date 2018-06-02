@@ -32,9 +32,7 @@ checkStatus() {
 
 startService() {
     screenOut "Starting Tinyproxy service..."
-    /usr/sbin/tinyproxy
-    checkStatus $? "Could not start Tinyproxy service." \
-                   "Tinyproxy service started successfully."
+    tinyproxy -d &
 }
 
 tailLog() {
@@ -44,6 +42,7 @@ tailLog() {
                    "Stopped tailing $TAIL_LOG"
 }
 
+tinyproxy --version
+touch $TAIL_LOG
 startService
-
 tailLog
