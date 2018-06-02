@@ -1,48 +1,8 @@
 #!/usr/bin/dumb-init /bin/sh
+TAIL_LOG=/var/log/tinyproxy/tinyproxy.log
 
-screenOut() {
-    timestamp=$(date +"%H:%M:%S")
-    
-    if [ "$#" -ne 2 ]; then
-        status='INFO'
-        message="$1"
-    else
-        status="$1"
-        message="$2"
-    fi
+echo "`date` Starting `tinyproxy -v` service..."
+tinyproxy
 
-    echo -e "[$status][$timestamp]: $message"
-}
-
-# Usage: checkStatus $? "Error message" "Success message"
-checkStatus() {
-    case $1 in
-        0)
-            screenOut "SUCCESS" "$3"
-            ;;
-        1)
-            screenOut "ERROR" "$2 - Exiting..."
-            exit 1
-            ;;
-        *)
-            screenOut "ERROR" "Unrecognised return code."
-            ;;
-    esac
-}
-
-startService() {
-    screenOut "Starting Tinyproxy service..."
-    tinyproxy -d &
-}
-
-tailLog() {
-    screenOut "Tailing Tinyproxy log..."
-    tail -f $TAIL_LOG
-    checkStatus $? "Could not tail $TAIL_LOG" \
-                   "Stopped tailing $TAIL_LOG"
-}
-
-tinyproxy --version
-touch $TAIL_LOG
-startService
-tailLog
+echo "`date` Tailing Tinyproxy log..."
+while ! tail -f $TAIL_LOG ; do sleep 1 ; done
