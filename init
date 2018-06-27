@@ -1,4 +1,5 @@
 #!/usr/bin/dumb-init /bin/sh
+
 TAIL_LOG=/var/log/tinyproxy/tinyproxy.log
 
 echo "`date` Starting `tinyproxy -v` service..."
