@@ -1,19 +1,23 @@
 # Docker Tinyproxy
 
+[![](https://images.microbadger.com/badges/version/captn3m0/tinyproxy:latest.svg)](https://microbadger.com/images/captn3m0/tinyproxy:latest) [![](https://images.microbadger.com/badges/image/captn3m0/tinyproxy:latest.svg)](https://microbadger.com/images/captn3m0/tinyproxy:latest)
+
 A quick and easy Dockerised Tinyproxy.
 
 Find it on [GitHub](https://github.com/captn3m0/docker-tinyproxy).
 
 Find it on [DockerHub](https://registry.hub.docker.com/u/capt3m0/tinyproxy/).
 
-### Usage
----
-##### Running a new Tinyproxy container
+## Usage
+
+### Running a new Tinyproxy container
 
 ```
 Usage:
-    docker run -d --name='tinyproxy' -p <Host_Port>:8888 captn3m0/tinyproxy:latest
+    docker run --detach --name='tinyproxy' --publish <Host_Port>:8888 captn3m0/tinyproxy:latest
 ```
+
+### Running with custom configuration
 
 Runs in the default configuration by itself. If you wish to pass a custom configuration, use the `--volume` option to mount it to `/etc/tinyproxy/tinyproxy.conf`:
 
@@ -21,14 +25,16 @@ Runs in the default configuration by itself. If you wish to pass a custom config
 docker run -d --name='tinyproxy' -p <Host_Port>:8888 --volume tinyproxy.conf:/etc/tinyproxy/tinyproxy.conf captn3m0/tinyproxy:latest
 ```
 
-### Monitoring
----
-##### Logs
+## Monitoring
+
+#### Logs
+
 `docker logs -f tinyproxy` will display a following tail of `/var/log/tinyproxy/tinyproxy.log`
 
-##### Stats
+#### Stats
+
 Navigating to `http://tinyproxy.stats/` while connected to the proxy will display the Tinyproxy Stats page.
 
-### Contribute
----
+## Contribute
+
 As always, contributions are appriciated. Simply open a Pull request.
