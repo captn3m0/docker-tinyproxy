@@ -1,6 +1,6 @@
 # Docker Tinyproxy
 
-[![](https://images.microbadger.com/badges/version/captn3m0/tinyproxy:latest.svg)](https://microbadger.com/images/captn3m0/tinyproxy:latest) [![](https://images.microbadger.com/badges/image/captn3m0/tinyproxy:latest.svg)](https://microbadger.com/images/captn3m0/tinyproxy:latest)
+[![](https://images.microbadger.com/badges/image/captn3m0/tinyproxy.svg)](https://microbadger.com/images/captn3m0/tinyproxy) [![](https://images.microbadger.com/badges/version/captn3m0/tinyproxy.svg)](https://microbadger.com/images/captn3m0/tinyproxy) [![](https://images.microbadger.com/badges/commit/captn3m0/tinyproxy.svg)](https://microbadger.com/images/captn3m0/tinyproxy)
 
 A quick and easy Dockerised Tinyproxy.
 
