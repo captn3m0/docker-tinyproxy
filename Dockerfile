@@ -1,4 +1,4 @@
-FROM alpine:3.7
+FROM alpine:3.9.4
 
 MAINTAINER Nemo <dockerfile@captnemo.in>
 ARG BUILD_DATE
