@@ -12,6 +12,8 @@ LABEL org.label-schema.build-date=$BUILD_DATE \
 
 RUN apk add --no-cache tinyproxy dumb-init
 
+COPY default.conf /etc/tinyproxy/tinyproxy.conf
+
 COPY init /init
 
 ENTRYPOINT ["/init"]
